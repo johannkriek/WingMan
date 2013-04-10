@@ -12,21 +12,43 @@
 
 @end
 
+@implementation restaurant
+@synthesize name, lat, lng;
+@end
+
 @implementation AddRestaurantController
 
-NSMutableArray *listOfItems;
+//NSMutableArray *listOfItems;
 NSArray *searchResults;
+
+NSMutableArray *restaurants;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+
+    //Initalize list of restaurants
+    restaurant *_val;
+    _val = [[restaurant alloc] init];
+    _val.name = @"Moxies";
+    _val.lat = 34.414;
+    _val.lng = 24.134;
     
-    //Initialize the array.
-    listOfItems = [[NSMutableArray alloc] init];
+    restaurant *_val2;
+    _val2 = [[restaurant alloc] init];
+    _val2.name = @"Earls";
+    _val2.lat = 34.414;
+    _val2.lng = 24.134;
     
-    //Add items
-    listOfItems = [NSMutableArray arrayWithObjects: @"Moxies", @"Earls", @"Original Joes", @"Brewsters", @"Beer Brothers", nil];
+    restaurant *_val3;
+    _val3 = [[restaurant alloc] init];
+    _val3.name = @"Boston Pizza";
+    _val3.lat = 34.414;
+    _val3.lng = 24.134;
+    
+    restaurants = [NSMutableArray arrayWithObjects: _val, _val2, _val3, nil];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,24 +58,25 @@ NSArray *searchResults;
 }
 
 - (IBAction)AddRestaurant:(id)sender {
-    //[self performSegueWithIdentifier:@"segAddRestaurantToAddSpecial" sender:self];
- 
-    [self addItemToTable:@"Boston Pizza"];
+
 }
 
 // Add item to table results
 -(void)addItemToTable:(NSString *)val
 {
-    [listOfItems addObject:@"Boston Pizza"];
+    /*
+    restaurant *_val;
+    _val.name = @"Moxies";
+    _val.lat = 34.414;
+    _val.lng = 24.134;
     
     [_restaurantTable reloadData];
+     */
 }
 
 // Remove item from table results
 -(void)removeItemFromTable:(NSString *)val
 {
-    [listOfItems addObject:@"Boston Pizza"];
-    
     [_restaurantTable reloadData];
 }
 
@@ -63,8 +86,7 @@ NSArray *searchResults;
         return [searchResults count];
         
     } else {
-        return [listOfItems count];
-        
+        return [restaurants count];
     }
 }
 
@@ -82,9 +104,24 @@ NSArray *searchResults;
     
     // Set up the cell...
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        cell.textLabel.text = [searchResults objectAtIndex:indexPath.row];
+        cell.textLabel.text = [[searchResults objectAtIndex:indexPath.row] name];
     } else {
-        cell.textLabel.text = [listOfItems objectAtIndex:indexPath.row];
+        cell.textLabel.text = [[restaurants objectAtIndex:indexPath.row] name];
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"restaurant"] != nil)
+    {
+        NSString *storedVal = [defaults objectForKey:@"restaurant"];
+
+        if ([storedVal isEqual: cell.textLabel.text])
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
     }
     
     return cell;
@@ -92,11 +129,9 @@ NSArray *searchResults;
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *resultPredicate = [NSPredicate
-                                    predicateWithFormat:@"SELF contains[cd] %@",
-                                    searchText];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[cd] %@", searchText];
     
-    searchResults = [listOfItems filteredArrayUsingPredicate:resultPredicate];
+    searchResults = [restaurants filteredArrayUsingPredicate:predicate];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -108,6 +143,34 @@ shouldReloadTableForSearchString:(NSString *)searchString
                                                      selectedScopeButtonIndex]]];
     
     return YES;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    // Chose to use the NSUSerDefautls to store values between views, think quick and dirty global variables array
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *storedVal = selectedCell.textLabel.text;
+    NSString *key = @"restaurant"; // the key for the data
+    
+    if (selectedCell.accessoryType == UITableViewCellAccessoryNone)
+    {
+        selectedCell.accessoryType = UITableViewCellAccessoryCheckmark;
+        [defaults setObject:storedVal forKey:key];
+    }
+    else
+        if (selectedCell.accessoryType == UITableViewCellAccessoryCheckmark)
+        {
+            selectedCell.accessoryType = UITableViewCellAccessoryNone;
+            [defaults setObject:@"" forKey:key];
+        }
+    
+    [defaults synchronize];
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

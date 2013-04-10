@@ -10,7 +10,9 @@
 
 @interface AddSpecialController : UITableViewController
 - (IBAction)AddSpecial:(id)sender;
-- (IBAction)AddImage:(id)sender;
 @property (weak, nonatomic) IBOutlet UIImageView *Picture;
+- (IBAction)AddImage:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *Price;
+@property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
 
 @end
