@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B46C037C17164E75002ADCC4 /* CreateRestaurantController.m in Sources */ = {isa = PBXBuildFile; fileRef = B46C037B17164E75002ADCC4 /* CreateRestaurantController.m */; };
+		B46C037F171650E6002ADCC4 /* CustomTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = B46C037E171650E6002ADCC4 /* CustomTypes.m */; };
+		B46C038317165A5B002ADCC4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B46C038217165A5B002ADCC4 /* CoreLocation.framework */; };
 		B4AFEF3C170E51B400AF8334 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AFEF3B170E51B400AF8334 /* UIKit.framework */; };
 		B4AFEF3E170E51B400AF8334 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AFEF3D170E51B400AF8334 /* Foundation.framework */; };
 		B4AFEF40170E51B400AF8334 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4AFEF3F170E51B400AF8334 /* CoreGraphics.framework */; };
@@ -42,6 +45,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B46C037A17164E75002ADCC4 /* CreateRestaurantController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRestaurantController.h; sourceTree = "<group>"; };
+		B46C037B17164E75002ADCC4 /* CreateRestaurantController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRestaurantController.m; sourceTree = "<group>"; };
+		B46C037D171650E6002ADCC4 /* CustomTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTypes.h; sourceTree = "<group>"; };
+		B46C037E171650E6002ADCC4 /* CustomTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTypes.m; sourceTree = "<group>"; };
+		B46C03801716596A002ADCC4 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		B46C038217165A5B002ADCC4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B4AFEF38170E51B400AF8334 /* WingMan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WingMan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4AFEF3B170E51B400AF8334 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4AFEF3D170E51B400AF8334 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -82,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B46C038317165A5B002ADCC4 /* CoreLocation.framework in Frameworks */,
 				B4AFEF77170E6A2E00AF8334 /* MapKit.framework in Frameworks */,
 				B4AFEF3C170E51B400AF8334 /* UIKit.framework in Frameworks */,
 				B4AFEF3E170E51B400AF8334 /* Foundation.framework in Frameworks */,
@@ -105,6 +115,8 @@
 		B4AFEF2F170E51B400AF8334 = {
 			isa = PBXGroup;
 			children = (
+				B46C038217165A5B002ADCC4 /* CoreLocation.framework */,
+				B46C03801716596A002ADCC4 /* GLKit.framework */,
 				B4AFEF76170E6A2E00AF8334 /* MapKit.framework */,
 				B4AFEF41170E51B400AF8334 /* WingMan */,
 				B4AFEF65170E51B400AF8334 /* WingManTests */,
@@ -136,10 +148,14 @@
 		B4AFEF41170E51B400AF8334 /* WingMan */ = {
 			isa = PBXGroup;
 			children = (
+				B46C037A17164E75002ADCC4 /* CreateRestaurantController.h */,
+				B46C037B17164E75002ADCC4 /* CreateRestaurantController.m */,
 				B4B2446217123457000F7DCD /* DaysOfWeekController.h */,
 				B4B2446317123457000F7DCD /* DaysOfWeekController.m */,
 				B4AFEF82170E83A700AF8334 /* AddRestaurantController.h */,
 				B4AFEF83170E83A700AF8334 /* AddRestaurantController.m */,
+				B46C037D171650E6002ADCC4 /* CustomTypes.h */,
+				B46C037E171650E6002ADCC4 /* CustomTypes.m */,
 				B4AFEF7F170E82C700AF8334 /* AddSpecialController.h */,
 				B4AFEF80170E82C700AF8334 /* AddSpecialController.m */,
 				B4AFEF7C170E7C4400AF8334 /* LoginController.h */,
@@ -307,6 +323,8 @@
 				B4AFEF81170E82C700AF8334 /* AddSpecialController.m in Sources */,
 				B4AFEF84170E83A700AF8334 /* AddRestaurantController.m in Sources */,
 				B4B2446417123457000F7DCD /* DaysOfWeekController.m in Sources */,
+				B46C037C17164E75002ADCC4 /* CreateRestaurantController.m in Sources */,
+				B46C037F171650E6002ADCC4 /* CustomTypes.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -244,7 +244,7 @@
                                             <rect key="frame" x="10" y="1" width="300" height="136"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HuT-s8-LHq">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="HuT-s8-LHq">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="113" id="ACo-fv-HOq"/>
                                                         <constraint firstAttribute="width" constant="300" id="cVP-Tb-bxV"/>
@@ -288,6 +288,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <connections>
+                                                        <action selector="PriceEntered:" destination="Lf8-Ln-mUD" eventType="editingDidEnd" id="MkS-Qk-RlU"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="/ lb" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOc-zs-zf2">
                                                     <constraints>
@@ -363,13 +366,10 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="285" id="Jea-8B-lOH"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
                                                     <state key="normal" title="Add Special">
                                                         <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <state key="highlighted">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="AddSpecial:" destination="Lf8-Ln-mUD" eventType="touchUpInside" id="ZiY-jy-B7r"/>
@@ -394,6 +394,7 @@
                     <navigationItem key="navigationItem" title="Create New Special" id="z8Q-g6-Gfu"/>
                     <connections>
                         <outlet property="Picture" destination="HuT-s8-LHq" id="LsF-0b-EeQ"/>
+                        <outlet property="PictureButton" destination="Yru-w3-NKC" id="P2N-Uu-Syh"/>
                         <outlet property="Price" destination="Wrs-OA-dLY" id="B3r-mS-uAC"/>
                         <outlet property="takePictureButton" destination="Yru-w3-NKC" id="u3U-Py-QKG"/>
                     </connections>
@@ -559,6 +560,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="GCg-VV-RnP">
                             <connections>
                                 <action selector="AddRestaurant:" destination="lGE-m8-quL" id="hwa-fH-x4N"/>
+                                <segue destination="hBR-t6-i8q" kind="push" id="9lR-yQ-tpw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -578,7 +580,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3107" y="143"/>
+            <point key="canvasLocation" x="3098" y="143"/>
         </scene>
         <!--Days Of Week Controller - Select Days of Week-->
         <scene sceneID="2zp-LG-VPv">
@@ -767,7 +769,162 @@
             </objects>
             <point key="canvasLocation" x="3098" y="742"/>
         </scene>
+        <!--Create Restaurant Controller - Add Restaurant-->
+        <scene sceneID="9Tc-s3-g1K">
+            <objects>
+                <tableViewController title="Add Restaurant" id="hBR-t6-i8q" customClass="CreateRestaurantController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="HhZ-w1-dWb">
+                        <rect key="frame" x="0.0" y="64" width="320" height="347"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection id="kaL-0Q-eDT">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="DGX-Ob-uNu">
+                                        <rect key="frame" x="0.0" y="10" width="320" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a35-nM-sIA">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="199" id="XgV-kL-6FZ"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="a35-nM-sIA" firstAttribute="centerX" secondItem="DGX-Ob-uNu" secondAttribute="centerX" type="default" id="kh1-qh-BSd"/>
+                                            <constraint firstItem="a35-nM-sIA" firstAttribute="top" secondItem="DGX-Ob-uNu" secondAttribute="top" constant="8" id="vrN-hG-CGo"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="4Jd-ko-Wj5">
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3um-Ww-F0T">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="198" id="IyQ-xN-mze"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="3um-Ww-F0T" firstAttribute="centerX" secondItem="4Jd-ko-Wj5" secondAttribute="centerX" type="default" id="RVY-fP-gXd"/>
+                                            <constraint firstItem="3um-Ww-F0T" firstAttribute="centerY" secondItem="4Jd-ko-Wj5" secondAttribute="centerY" type="default" id="YKf-14-dZw"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="55" id="fID-6O-qZZ">
+                                        <rect key="frame" x="0.0" y="99" width="320" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="54"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRO-TJ-bJH">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="285" id="RyR-Oz-pVx"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                                                    <state key="normal" title="Add Restaurant">
+                                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="CreateRestaurant:" destination="hBR-t6-i8q" eventType="touchUpInside" id="eiv-F9-uQD"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="JRO-TJ-bJH" firstAttribute="top" secondItem="fID-6O-qZZ" secondAttribute="top" constant="5" id="NcT-NE-IZa"/>
+                                            <constraint firstItem="JRO-TJ-bJH" firstAttribute="centerX" secondItem="fID-6O-qZZ" secondAttribute="centerX" type="default" id="drn-5h-ot8"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="hBR-t6-i8q" id="Mmc-SR-ynz"/>
+                            <outlet property="delegate" destination="hBR-t6-i8q" id="mGp-Ig-a4G"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add Restaurant" id="9Ri-Bw-Ou2"/>
+                    <connections>
+                        <outlet property="RestaurantAddress" destination="3um-Ww-F0T" id="NLm-J1-uLF"/>
+                        <outlet property="RestaurantName" destination="a35-nM-sIA" id="Zh0-h5-eLS"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gtm-cJ-GwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3577" y="143"/>
+        </scene>
     </scenes>
+    <classes>
+        <class className="AddRestaurantController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddRestaurantController.h"/>
+            <relationships>
+                <relationship kind="action" name="AddRestaurant:"/>
+                <relationship kind="outlet" name="restaurantTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="AddSpecialController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddSpecialController.h"/>
+            <relationships>
+                <relationship kind="action" name="AddImage:"/>
+                <relationship kind="action" name="AddSpecial:"/>
+                <relationship kind="action" name="PriceEntered:"/>
+                <relationship kind="outlet" name="Picture" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="PictureButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="Price" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="takePictureButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="CreateRestaurantController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateRestaurantController.h"/>
+            <relationships>
+                <relationship kind="action" name="CreateRestaurant:"/>
+                <relationship kind="outlet" name="RestaurantAddress" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="RestaurantName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="DaysOfWeekController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DaysOfWeekController.h"/>
+        </class>
+        <class className="LoginController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginController.h"/>
+            <relationships>
+                <relationship kind="action" name="Login:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="RegisterController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterController.h"/>
+            <relationships>
+                <relationship kind="action" name="Register:"/>
+            </relationships>
+        </class>
+        <class className="WelcomeController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeController.h"/>
+            <relationships>
+                <relationship kind="action" name="Login:"/>
+                <relationship kind="action" name="Register:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

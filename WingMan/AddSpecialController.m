@@ -24,6 +24,16 @@
     tapRecognizer.cancelsTouchesInView = NO;
     
     [self.view addGestureRecognizer:tapRecognizer];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults removeObjectForKey:@"picture"];
+    [defaults removeObjectForKey:@"price"];
+    [defaults removeObjectForKey:@"restaurant"];
+    [defaults removeObjectForKey:@"daysofweek"];
+    
+    _Price.text = @"";
+    _Picture.image = nil;
 }
 
 - (void)didReceiveMemoryWarning
@@ -40,23 +50,27 @@
     if ([defaults objectForKey:@"picture"] == nil)
     {
         valid = false;
+        msg = @"Picture is required!";
     }
     else if ([defaults objectForKey:@"price"] == nil)
     {
         valid = false;
+        msg = @"Price is required!";
     }
     else if ([defaults objectForKey:@"restaurant"] == nil)
     {
         valid = false;
+        msg = @"Restaurant required!";
     }
     else if ([defaults objectForKey:@"daysofweek"] != nil)
     {
         valid = false;
+        msg = @"Days of week required!";
         
         NSMutableArray *tempDaysOfWeek = [[NSMutableArray alloc] init];
         tempDaysOfWeek = [defaults objectForKey:@"daysofweek"];
     
-        for (int i=0; i<tempDaysOfWeek.count; i++) {
+        for (int i=0; i<tempDaysOfWeek.count && !valid; i++) {
             if ([tempDaysOfWeek[i] isEqual:@"1"])
             {
                 valid = true;
@@ -66,32 +80,33 @@
     }
     else
     {
+        msg = @"Days of week required!";
         valid = false;
     }
     
+
+    
     if (valid)
     {
-        msg = @"YES!";
+        [defaults removeObjectForKey:@"picture"];
+        [defaults removeObjectForKey:@"price"];
+        [defaults removeObjectForKey:@"restaurant"];
+        [defaults removeObjectForKey:@"daysofweek"];
+    
+        _Price.text = @"";
+        _Picture.image = nil;
+        _PictureButton.titleLabel.text = @"Take a Picture";
     }
     else
     {
-        msg = @"NO!";
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Invalid Entry!"
+                                                        message:msg
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        
+        [alert show];
     }
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"IS VALID?"
-                                                    message:msg
-                                                   delegate:nil
-                                          cancelButtonTitle:@"OK"
-                                          otherButtonTitles:nil];
-    [alert show];
-    
-    [defaults removeObjectForKey:@"picture"];
-    [defaults removeObjectForKey:@"price"];
-    [defaults removeObjectForKey:@"restaurant"];
-    [defaults removeObjectForKey:@"daysofweek"];
-    
-    _Price.text = @"";
-    _Picture.image = nil;
 }
 
 // Take picture
@@ -122,20 +137,32 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *key = @"picture"; // the key for the data
     
-    [defaults setObject:image forKey:key];
+    [defaults setObject:UIImagePNGRepresentation(image) forKey:key];
     [defaults synchronize];
+    
+    _PictureButton.titleLabel.text = @"";
 }
 
 // Price has been entered
 -(void)tap:(UIGestureRecognizer *)gr
 {
     [self.view endEditing:YES];
+}
+
+- (IBAction)PriceEntered:(id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *key = @"price"; // the key for the data
     
-    [defaults setObject:_Price.text forKey:key];
-    [defaults synchronize];
+    if ([_Price.text isEqualToString:@""])
+    {
+        [defaults removeObjectForKey:@"price"];
+    }
+    else
+    {
+        [defaults setObject:_Price.text forKey:key];
+        [defaults synchronize];
+    }
 }
 @end
 

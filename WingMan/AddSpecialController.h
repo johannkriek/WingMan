@@ -14,5 +14,7 @@
 - (IBAction)AddImage:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *Price;
 @property (weak, nonatomic) IBOutlet UIButton *takePictureButton;
+- (IBAction)PriceEntered:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *PictureButton;
 
 @end

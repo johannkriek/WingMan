@@ -15,13 +15,3 @@
 -(IBAction)AddRestaurant:(id)sender;
 @end
 
-@interface restaurant : NSObject
-{
-    NSString *name;
-    double lat;
-    double lng;
-}
-@property(retain) NSString *name;
-@property(assign) double lat;
-@property(assign) double lng;
-@end

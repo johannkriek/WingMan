@@ -7,13 +7,10 @@
 //
 
 #import "AddRestaurantController.h"
+#import "CustomTypes.h"
 
 @interface AddRestaurantController ()
 
-@end
-
-@implementation restaurant
-@synthesize name, lat, lng;
 @end
 
 @implementation AddRestaurantController
@@ -51,6 +48,11 @@ NSMutableArray *restaurants;
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -58,7 +60,8 @@ NSMutableArray *restaurants;
 }
 
 - (IBAction)AddRestaurant:(id)sender {
-
+    // TO DO RELOAD LIST OF RESTAURANTS IF NEW WAS ADDED
+    [_restaurantTable reloadData];
 }
 
 // Add item to table results
