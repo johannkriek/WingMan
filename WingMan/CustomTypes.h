@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 @interface restaurant : NSObject
 {
@@ -17,4 +18,18 @@
 @property(retain) NSString *name;
 @property(assign) double lat;
 @property(assign) double lng;
+@end
+
+@interface annotation : NSObject <MKAnnotation> {
+    
+	NSString *title;
+	CLLocationCoordinate2D coordinate;
+    
+}
+
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+- (id)initWithTitle:(NSString *)ttl andCoordinate:(CLLocationCoordinate2D)c2d;
+
 @end

@@ -802,8 +802,30 @@
                                             <constraint firstItem="a35-nM-sIA" firstAttribute="top" secondItem="DGX-Ob-uNu" secondAttribute="top" constant="8" id="vrN-hG-CGo"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="4Jd-ko-Wj5">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" id="ZM1-CN-IjV">
                                         <rect key="frame" x="0.0" y="55" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Website" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WP0-UD-Eez">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="198" id="WIc-2l-5Vt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="WP0-UD-Eez" firstAttribute="centerX" secondItem="ZM1-CN-IjV" secondAttribute="centerX" type="default" id="JLR-1z-bf2"/>
+                                            <constraint firstItem="WP0-UD-Eez" firstAttribute="centerY" secondItem="ZM1-CN-IjV" secondAttribute="centerY" type="default" id="NYd-7b-z5H"/>
+                                        </constraints>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="4Jd-ko-Wj5">
+                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="43"/>
@@ -824,8 +846,34 @@
                                             <constraint firstItem="3um-Ww-F0T" firstAttribute="centerY" secondItem="4Jd-ko-Wj5" secondAttribute="centerY" type="default" id="YKf-14-dZw"/>
                                         </constraints>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="137" id="BOz-bG-1oU">
+                                        <rect key="frame" x="0.0" y="143" width="320" height="137"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="0.0" width="300" height="136"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcg-YG-LrS">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="137" id="BM3-f5-QFf"/>
+                                                        <constraint firstAttribute="width" constant="300" id="FWz-Wf-J13"/>
+                                                    </constraints>
+                                                </mapView>
+                                                <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aRG-pI-Idx">
+                                                    <color key="color" cocoaTouchSystemColor="darkTextColor"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="aRG-pI-Idx" firstAttribute="centerX" secondItem="BOz-bG-1oU" secondAttribute="centerX" type="default" id="Aib-Ys-2pE"/>
+                                            <constraint firstItem="Vcg-YG-LrS" firstAttribute="top" secondItem="BOz-bG-1oU" secondAttribute="top" constant="-1" id="Iu9-mw-Kfh"/>
+                                            <constraint firstItem="aRG-pI-Idx" firstAttribute="centerX" secondItem="Vcg-YG-LrS" secondAttribute="centerX" type="default" id="aVp-Sf-hPS"/>
+                                            <constraint firstItem="aRG-pI-Idx" firstAttribute="centerY" secondItem="Vcg-YG-LrS" secondAttribute="centerY" type="default" id="ixI-Yo-BdE"/>
+                                        </constraints>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="55" id="fID-6O-qZZ">
-                                        <rect key="frame" x="0.0" y="99" width="320" height="56"/>
+                                        <rect key="frame" x="0.0" y="280" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="10" y="0.0" width="300" height="54"/>
@@ -862,8 +910,11 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Restaurant" id="9Ri-Bw-Ou2"/>
                     <connections>
+                        <outlet property="Activity" destination="aRG-pI-Idx" id="Pwa-cD-qQ3"/>
+                        <outlet property="Map" destination="Vcg-YG-LrS" id="ldB-EE-TUs"/>
                         <outlet property="RestaurantAddress" destination="3um-Ww-F0T" id="NLm-J1-uLF"/>
                         <outlet property="RestaurantName" destination="a35-nM-sIA" id="Zh0-h5-eLS"/>
+                        <outlet property="RestaurantWebsite" destination="WP0-UD-Eez" id="mGn-v9-PD8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gtm-cJ-GwG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -895,8 +946,11 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CreateRestaurantController.h"/>
             <relationships>
                 <relationship kind="action" name="CreateRestaurant:"/>
+                <relationship kind="outlet" name="Activity" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="Map" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="RestaurantAddress" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="RestaurantName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="RestaurantWebsite" candidateClass="UITextField"/>
             </relationships>
         </class>
         <class className="DaysOfWeekController" superclassName="UITableViewController">

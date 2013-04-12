@@ -18,6 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    _RestaurantName.text = @"";
+    _RestaurantAddress.text = @"";
+    _RestaurantWebsite.text = @"";
 
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
                                              initWithTarget:self action:@selector(tap:)];
@@ -41,8 +45,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    _RestaurantName.text = @"";
-    _RestaurantAddress.text = @"";
+
 }
 
 - (IBAction)CreateRestaurant:(id)sender {
@@ -60,25 +63,63 @@
     }
     else
     {
-    CLGeocoder *geocoder;
+   
+        [self.view setUserInteractionEnabled:NO];
+        //_Activity.hidden = false;
+        [_Activity startAnimating];  
     
-    [geocoder geocodeAddressString:_RestaurantAddress.text completionHandler:^(NSArray* placemarks, NSError* error){
-                     for (CLPlacemark* aPlacemark in placemarks)
-                     {
-                         NSString *loc = aPlacemark.locality;
-                     }
-                 }];
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];;
+    
+        [geocoder geocodeAddressString:_RestaurantAddress.text
+                     completionHandler:^(NSArray* placemarks, NSError* error){
+                         for (CLPlacemark* aPlacemark in placemarks)
+                         {
+                             
+                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Seach Results"
+                                                                             message:@"Restaurant Found!"
+                                                                            delegate:nil
+                                                                   cancelButtonTitle:@"OK"
+                                                                   otherButtonTitles:nil];
+                             
+                             restaurant *_val;
+                             _val = [[restaurant alloc] init];
+                             _val.name = _RestaurantName.text;
+                             
+                             
+                             
+                             _val.lat = aPlacemark.location.coordinate.latitude;
+                             _val.lng = aPlacemark.location.coordinate.longitude;
+
+                             annotation *a = [[annotation alloc] initWithTitle:_RestaurantName.text andCoordinate:aPlacemark.location.coordinate];
+                             
+                             [_Map removeAnnotations:_Map.annotations];
+                             [_Map setCenterCoordinate:a.coordinate animated:true];
+                             
+                             MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.02);
+                             MKCoordinateRegion region = MKCoordinateRegionMake(a.coordinate, span);
+                             
+                             [_Map setRegion:region animated:true];
+                             [_Map addAnnotation:a];
+                             
+                             //Thomas add restaurant to database here
+                             
+                             _RestaurantName.text = @"";
+                             _RestaurantAddress.text = @"";
+                             _RestaurantWebsite.text = @"";
+                             
+                             [_Activity stopAnimating];
+                             //_Activity.hidden = true;
+                             [self.view setUserInteractionEnabled:YES];
+                             
+                             [alert show];
+                             
+                             break;
+                         }
+                     }];
     }
     
     if (valid)
     {
-    restaurant *_val;
-    _val = [[restaurant alloc] init];
-    _val.name = @"Bocados";
-    
-    _val.lat = 34.414;
-    _val.lng = 24.134;
-        
         //[self.navigationController popViewControllerAnimated:YES];
     }
     else

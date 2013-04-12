@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
 
 @interface CreateRestaurantController : UITableViewController
 @property (weak, nonatomic) IBOutlet UITextField *RestaurantName;
 @property (weak, nonatomic) IBOutlet UITextField *RestaurantAddress;
 - (IBAction)CreateRestaurant:(id)sender;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *Activity;
+@property (weak, nonatomic) IBOutlet MKMapView *Map;
+@property (weak, nonatomic) IBOutlet UITextField *RestaurantWebsite;
 
 @end
